@@ -34,7 +34,7 @@ export class CadastrarComponent implements OnInit {
   }
 
   cadastrar(){
-     if(this.user.nome.length<3){
+    /* if(this.user.nome.length<3){
        alert('Preencha o campo nome com pelo menos 3 caracteres')
      }
 
@@ -44,12 +44,14 @@ export class CadastrarComponent implements OnInit {
     
      if(this.user.usuario.indexOf('@') == -1 || this.user.usuario.indexOf('.') == -1){
       alert('E-mail Inválido!')
-    }
+    }*/
     this.user.tipo = this.tipoUsuario
 
-    if(this.user.senha != this.confirmarSenha){
-       alert('A senhas estão incorretas.')
-    } else {
+    if(this.user.senha.length<5){
+      alert('Preencha o campo senha com pelo menos 5 caracteres')
+    }else if(this.user.senha != this.confirmarSenha){
+       alert('As senhas estão incorretas!!!')
+    }else{
       this.authService.cadastrar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/entrar'])
